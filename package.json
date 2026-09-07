@@ -7,9 +7,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "format": "biome format --write",
+    "lint": "biome lint --write"
   },
   "dependencies": {
-    "astro": "^7.3.1"
+    "astro": "^7.3.1",
+    "astro-capo": "^0.0.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.12"
   }
 }
