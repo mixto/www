@@ -20,9 +20,7 @@
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "trailingNewline": true
+    "useEditorconfig": true
   },
   "linter": {
     "enabled": true,
