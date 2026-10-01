@@ -12,6 +12,9 @@ const notes = await getCollection('notes', (entry) => {
   {notes.map(note => (
     <a href={`notes/${note.id}`}>
       <div class="flex items-center gap-4">
+        <span class={note.data.lang === 'es' ? 'text-pink-400' : 'text-orange-400'}>
+          {note.data.lang}
+        </span>
         <h2 class="font-semibold">{note.data.title}</h2>
         <span>{note.data.date}</span>
       </div>

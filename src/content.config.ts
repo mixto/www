@@ -8,6 +8,7 @@ const notes = defineCollection({
     title: z.string().min(3).max(30),
     description: z.string().min(10),
     date: z.iso.date(),
+    lang: z.enum(['es', 'en']).optional().default('en'),
     draft: z.boolean().optional().default(false)
   })
 })

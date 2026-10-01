@@ -2,7 +2,7 @@
 title: Mull it
 description: Why do I mull it over so much?
 date: '2026-10-01'
-draft: true
+lang: es
 ---
 
 Si has llegado hasta este lugar de la web es que hay algo de tí o de mí que no nos deja en paz. Algo que no paras de darle vueltas. O simplemente has querido leer esta nota que he escrito.
