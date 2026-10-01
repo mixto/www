@@ -7,7 +7,8 @@ const notes = defineCollection({
   schema: z.object({
     title: z.string().min(3).max(30),
     description: z.string().min(10),
-    date: z.iso.date()
+    date: z.iso.date(),
+    draft: z.boolean().optional().default(false)
   })
 })
 

@@ -1,7 +1,20 @@
 ---
 import Layout from '@layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+const notes = await getCollection('notes', (entry) => {
+  return entry.data.draft !== true
+})
 ---
 
 <Layout title="Hello World!">
   <h1>Notes</h1>
+  {notes.map(note => (
+    <a href={`notes/${note.id}`}>
+      <div class="flex items-center gap-4">
+        <h2 class="font-semibold">{note.data.title}</h2>
+        <span>{note.data.date}</span>
+      </div>
+    </a>
+  ))}
 </Layout>
