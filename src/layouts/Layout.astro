@@ -1,0 +1,19 @@
+---
+import Head from '@components/Head.astro'
+import '@styles/global.css'
+
+interface Props {
+  title?: string
+}
+
+const { title = 'Astro' } = Astro.props
+---
+
+<html lang="en">
+  <Head {title} />
+  <body class="font-iosevka bg-mist-900 text-gray-200">
+    <div class="mx-auto max-w-3xl w-[90%] py-10">
+      <slot />
+    </div>
+  </body>
+</html>

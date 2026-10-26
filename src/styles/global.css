@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-iosevka: var(--font-iosevka);
+}
+
+@layer base {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+}
