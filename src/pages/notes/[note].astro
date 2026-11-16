@@ -1,0 +1,27 @@
+---
+import Layout from '@layouts/Layout.astro'
+import type { GetStaticPaths } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+import { getCollection, render } from 'astro:content'
+
+export const getStaticPaths = (async () => {
+  const notes = await getCollection('notes')
+  return notes.map((note) => {
+    return {
+      params: { note: note.id },
+      props: { note }
+    }
+  })
+}) satisfies GetStaticPaths
+
+interface Props {
+  note: CollectionEntry<'notes'>
+}
+
+const { note } = Astro.props
+const { Content } = await render(note)
+---
+
+<Layout title={note.data.title}>
+  <Content />
+</Layout>
