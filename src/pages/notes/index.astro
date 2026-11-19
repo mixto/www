@@ -1,19 +1,16 @@
 ---
+import Note from '@components/ui/Note.astro'
 import Layout from '@layouts/Layout.astro'
 import { getCollection } from 'astro:content'
 
-const notes = await getCollection('notes')
+const notes = (await getCollection('notes'))
+  .sort((a, b) => b.data.date.localeCompare(a.data.date))
+  .filter((n) => n.data.draft !== true)
 ---
 
 <Layout title="Notes">
   <h1>Notes!</h1>
-  <ul>
-    {notes.map((note) => (
-      <li>
-        <a href={`notes/${note.id}`}>
-          {note.data.title}
-        </a>
-      </li>
-    ))}
+  <ul class="grid grid-cols-1">
+    {notes.map((note) => <Note {note} />)}
   </ul>
 </Layout>

@@ -37,6 +37,11 @@
       "trailingNewline": true
     }
   },
+  "markdown": {
+    "parser": {
+      "frontmatter": true
+    }
+  },
   "assist": {
     "enabled": true,
     "actions": {
