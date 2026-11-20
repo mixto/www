@@ -1,22 +1,40 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import type { GetStaticPaths } from 'astro'
+import type { CollectionEntry } from 'astro:content'
 import { getCollection, render } from 'astro:content'
 
+interface Props {
+  note: CollectionEntry<'notes'>
+  prev?: CollectionEntry<'notes'>
+  next?: CollectionEntry<'notes'>
+}
+
 export const getStaticPaths = (async () => {
-  const notes = await getCollection('notes')
-  return notes.map((note) => {
+  const notes = (await getCollection('notes'))
+    .sort((a, b) => b.data.date.localeCompare(a.data.date))
+    .filter((n) => n.data.draft !== true)
+
+  return notes.map((note, index) => {
     return {
       params: { id: note.id },
-      props: { note }
+      props: {
+        note,
+        prev: notes[index - 1],
+        next: notes[index + 1]
+      }
     }
   })
 }) satisfies GetStaticPaths
 
-const { note } = Astro.props
+const { note, prev, next } = Astro.props
 const { Content } = await render(note)
 ---
 
 <Layout title={note.data.title}>
   <Content />
+  <div class="flex items-start gap-3">
+    {prev && <a href={`/notes/${note.id}`}>{prev.data.title}</a>}
+    {next && <a href={`/notes/${note.id}`}>{next.data.title}</a>}
+  </div>
 </Layout>
